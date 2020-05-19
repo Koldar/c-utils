@@ -1,0 +1,8 @@
+digraph {
+	rankdir="LR";
+
+	SOURCE [label="source"];
+	SINK [label="sink"];
+	
+	SOURCE -> SINK [label="new edge"];
+}

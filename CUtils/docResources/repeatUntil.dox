@@ -1,0 +1,10 @@
+Implementation of a repeat until loop.
+
+This repeat until loop can be nested.
+Usage is the following:
+
+@code
+CU_REPEAT {
+	//body
+} CU_UNTIL (condition_expression);
+@endcode

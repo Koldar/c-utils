@@ -1,0 +1,7 @@
+Usually @c new functions always malloc data in the heap. This function is different: it returns @c NULL if @c enable is false.
+This is done for the following purpose: if we don't want to enable statistics, the statistics themselves shouldn't do anything at all.
+This is why all the functions in this module allows the involved structure ::online_statistics_pool to be ::CU_NULLABLE, instead of being ::CU_NOTNULL,
+(i.e., the cuNewOSP may return NULL).
+In the same way, ::cuDestroyOSP may deal with a null value as well. 
+ 
+In this way, the user code doesn't need to know if the structure has been created or not: the module will automatically detect it.

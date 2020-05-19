@@ -1,0 +1,14 @@
+@code
+char* string = "Hello wo123rld!";
+char** groups = NULL;
+
+bool r = applyRegularExpression(string, "o\\([[:digit:]][[:digit:]]*\\)r", 1, &groups);
+if (r == true) {
+	//fetch the first 
+	const char* firstGroup = groups[1];
+	//do something with the group 
+	assert(strcmp(firstGroup, "123") == 0);
+	//destroy all the groups
+	destroyGroupInfo(1, &groups);
+}
+@endcode

@@ -1,0 +1,17 @@
+You can also generates `until ... do` cycles. Until do cycles operates as follows:
+ @li enter in the cycle if condition is false
+ @li process the whole cycle
+ @li as soon as a cycle has terminated, recheck condition
+ @li continue until `condition` is true
+ 
+ Here's an example of an until do cycle:
+@code
+ int i=0;
+ bool stop = false;
+CU_UNTIL (stop==true) CU_DO {
+	i++;
+	if (i >=5) {
+		stop = true;
+	}
+}
+@endcode

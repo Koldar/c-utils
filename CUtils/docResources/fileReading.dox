@@ -1,0 +1,7 @@
+@code
+	FILE* f = fopen("test.dat", "r");
+ 	CU_ITERATE_ON_FILE_LINES(f, 100, line, i) {
+ 		printf("the %04d-th line is \"%s\", line);
+ 	}
+ 	fclose(f);
+@endcode

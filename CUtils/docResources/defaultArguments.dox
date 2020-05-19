@@ -1,0 +1,28 @@
+@code
+
+//first we need to have a function which we want to generates default for. This function will specifies all the parameters
+struct user* newUser(const char* name, const char* surname, int age, bool hasDrivingLicense);
+
+//we immediately then use this macro to let the preprocessor knows that function "newUser" declares default arguments
+//we pass the return value of newUser, the name of the function itself (newUser) and the types of its parameters (only the types!!!)
+CU_DECLARE_FUNCTION_WITH_DEFAULTS(user*, newUser, const char*, const char*, int, bool);
+
+//ok, now we can declare the generalized function "newUser". Concretely, you will always call this macro.
+//you declare the uynderlying function (newUser) and the number of the parameteres
+#define newUser(...) CU_CALL_FUNCTION_WITH_DEFAULTS(newUser, 4, __VA_ARGS__)
+//ok, finally you can declare the default arguments: empty parameters means that the parameter is required. Put this in the header
+CU_DECLARE_DEFAULT_VALUES(newUser,
+		/* first parameter (name) is required)*/,
+		/* second parameter (surname) is required)*/,
+		20 /*third parameter (age) is optional and its default value is 20*/,
+		true /*fourth parameter (hasDrivingLicense) is optional and its default value is true*/
+);
+//put this one in the source code
+CU_DEFINE_DEFAULT_VALUES(newUser,
+		/* first parameter (name) is required)*/,
+		/* second parameter (surname) is required)*/,
+		20 /*third parameter (age) is optional and its default value is 20*/,
+		true /*fourth parameter (hasDrivingLicense) is optional and its default value is true*/
+);
+
+@endcode
